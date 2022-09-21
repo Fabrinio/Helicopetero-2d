@@ -6,6 +6,8 @@
 
 
 GLfloat tranx, trany = 0;
+GLfloat escala=1;
+GLfloat rota=1;
 void init(void)
 {
     glClearColor(0,0,0,1);
@@ -28,7 +30,9 @@ void janela(int x, int y)
 void heli (void)
 {
     glPushMatrix();
+    glScalef(escala,escala,0);
     glTranslated(tranx, trany, 0);
+    glRotatef(rota, rota,rota,0);
    // base helicopetero
    glBegin(GL_LINE_LOOP);
     glVertex2f(340,220);
@@ -91,6 +95,7 @@ void heli (void)
    glEnd();
    janela(240,300);
    janela(280,300);
+
    glPopMatrix();
 }
 
@@ -117,6 +122,18 @@ case 'a':
     break;
 case 'd':
     tranx+=3;
+    break;
+case '+':
+    escala+=0.3;
+    break;
+case '-':
+    escala-=0.3;
+    break;
+case 'y':
+    rota++;
+    break;
+case 'h':
+    rota--;
     break;
 }
 glutPostRedisplay();
